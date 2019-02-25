@@ -18,9 +18,7 @@
 		var area = $('#Produtos');
 		var x = 0;
 		var vlTotal = $('#Venda_vltotal');
-		$countSelect = $('.produtoClone').length;
 		
-
 		$(botaoAdicionar).click(function(e){
 			e.preventDefault();
 
@@ -29,33 +27,39 @@
 			novoselect = newbloco.find("select");
 			novoinput = newbloco.find("input");
 
-			$countInput = novoinput.length;
+			countSelect = $('.produtoClone').length;
 
-			novoselect.attr('id', "Produtovenda_"+$countSelect+"_produto_id");
-			novoselect.attr('name', "Produtovenda["+$countSelect+"][produto_id]");
+			countInput = novoinput.length;
 
-			novoinput.attr('id', "Produtovenda_"+$countInput+"_qtd");
-			novoinput.attr('name', "Produtovenda["+$countInput+"][qtd]");
+			novoselect.attr('id', "Produtovenda_"+countSelect+"_produto_id");
+			novoselect.attr('name', "Produtovenda["+countSelect+"][produto_id]");
+
+			novoinput.attr('id', "Produtovenda_"+countInput+"_qtd");
+			novoinput.attr('name', "Produtovenda["+countInput+"][qtd]");
 
 			newbloco.appendTo(area);
 
-		})
-		
-		$("#Produtovenda_"+$countInput+"_qtd").on("change", function(){
+			console.log(preco);
 
-			for (var i=0; i>= $countSelect; i++) {
+			novoinput.on("change", function(){
+			
+				var preco = novoselect.find("option:selected").data("valor");
 
-				var preco = $("#Produtovenda_"+i+"_produto_id option:selected").data("valor");
-
-				var qtd = $("#Produtovenda_"+i+"_qtd").val();
-
-				$('#Venda_vltotal').val(preco*qtd);
+				$("#Venda_vltotal").val(preco*this.value);
 					
-			}
 		})
-		
-		
+			("#Produtovenda_0_qtd").on("change", function(){
+
+				var qtd = $("#Produtovenda_0_qtd").val();
+			
+				var preco = $("#Produtovenda_0_produto_id option:selected").data("valor");
+
+				$("#Venda_vltotal").val(preco*qtd);
+		})		
+	})
+
 })
+
 </script>
 
 <div class="form">

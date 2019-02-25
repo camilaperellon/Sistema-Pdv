@@ -939,3 +939,11 @@ REQUEST_URI=/pdv/index.php?r=venda/create
 in /data/www/pdv/protected/views/venda/_form.php (130)
 in /data/www/pdv/protected/views/venda/create.php (18)
 in /data/www/pdv/protected/controllers/VendaController.php (81)
+2019/02/25 13:09:12 [error] [exception.CHttpException.404] CHttpException: Unable to resolve the request "ven,da/create". in /data/www/yii/framework/web/CWebApplication.php:286
+Stack trace:
+#0 /data/www/yii/framework/web/CWebApplication.php(141): CWebApplication->runController('ven,da/create')
+#1 /data/www/yii/framework/base/CApplication.php(185): CWebApplication->processRequest()
+#2 /data/www/pdv/index.php(17): CApplication->run()
+#3 {main}
+REQUEST_URI=/pdv/index.php?r=ven,da/create
+---
