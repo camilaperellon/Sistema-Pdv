@@ -71,6 +71,12 @@ class VendaController extends Controller
 
 		if(isset($_POST['Venda']))
 		{
+
+			foreach ($_POST['Produtovenda'] as $atributosAux) {
+				
+				$modelcesta->atributosAux = $_POST['Produtovenda'];
+			}
+
 			$model->attributes=$_POST['Venda'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->idvenda));

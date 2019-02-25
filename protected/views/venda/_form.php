@@ -39,27 +39,38 @@
 
 			newbloco.appendTo(area);
 
-			console.log(preco);
 
-			novoinput.on("change", function(){
-			
-				var preco = novoselect.find("option:selected").data("valor");
 
-				$("#Venda_vltotal").val(preco*this.value);
-					
 		})
-			("#Produtovenda_0_qtd").on("change", function(){
-
-				var qtd = $("#Produtovenda_0_qtd").val();
-			
-				var preco = $("#Produtovenda_0_produto_id option:selected").data("valor");
-
-				$("#Venda_vltotal").val(preco*qtd);
-		})		
 	})
 
-})
+	function total(){
 
+		var valorTotal = 0;
+		var qtdTotal = 0;
+
+		$(".produtoClone").each(function(){
+
+			var preco = $(this).find("select option:selected").data("valor");
+
+			var qtd = parseInt($(this).find("input").val());
+
+			valorTotal += preco * qtd;
+
+			qtdTotal += qtd;
+
+		})
+
+		$("#Venda_vltotal").val(valorTotal);
+		$("#Venda_qtd").val(qtdTotal);
+
+		}
+
+	$(document).on("change", ":input", function(){
+
+		total();
+	})
+		
 </script>
 
 <div class="form">
@@ -154,6 +165,13 @@
 		echo $form->labelEx($model,'vltotal');
 		echo $form->textField($model,'vltotal');
 		echo $form->error($model,'vltotal');
+	
+	?>
+
+	<?php
+		echo $form->labelEx($model,'qtd');
+		echo $form->textField($model,'qtd');
+		echo $form->error($model,'qtd');
 	
 	?>
 

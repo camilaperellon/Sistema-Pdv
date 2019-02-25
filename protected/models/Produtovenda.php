@@ -63,7 +63,6 @@ class Produtovenda extends CActiveRecord
 			'venda_id' => 'Venda',
 			'produto_id' => 'Produto',
 			'vlatual' => 'Vlatual',
-			'qtd' => 'Qtd'
 		);
 	}
 
